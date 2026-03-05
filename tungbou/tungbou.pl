@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Config::Tiny;
+use Config::Any::TOML;
 use Getopt::Long;
 use Net::Ping;
 
@@ -20,15 +20,15 @@ if ( $dry )
   warn "running in dry mode, nothing will be changed\n"
 }
 
-my $config = Config::Tiny->read($config_path);
+my $config = Config::Any::TOML->load($config_path);
 
-my @children = split ' ', $config->{_}{TUNGBOU_CHILDREN};
-my $parent_dir = glob $config->{_}{TUNGBOU_PARENT_DIR};
+my $parent = $config->{parent};
+my @children = $parent->{children}[0];
+my $parent_dir = glob $parent->{dir};
 
 foreach my $child ( @children )
 {
-  my $key = "TUNGBOU_${child}_DIR";
-  my $child_dir = $config->{_}{$key};
+  my $child_dir = $child->{dir};
 
   if ( not defined $child_dir )
   {
@@ -36,7 +36,7 @@ foreach my $child ( @children )
     next;
   }
 
-  my $host = "$child.local";
+  my $host = "$child->{hostname}.local";
   my $command = "rsync -avhz --progress \"$parent_dir\" $host:\"$child_dir\"";
 
   if ( $dry )
