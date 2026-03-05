@@ -1,12 +1,12 @@
-PREFIX ?= /usr/local
+PREFIX ?=
 
 NAME = tungbou
 
 .PHONEY: install, uninstall
 
 install:
-	install -Dm755 $(NAME).pl $(PREFIX)/bin/$(NAME)
-	test -f "/etc/$(NAME).conf" || install -Dm644 $(NAME).sample.conf /etc/$(NAME).conf
+	install -Dm755 $(NAME).pl $(PREFIX)/usr/bin/$(NAME)
+	test -f "/etc/$(NAME).conf" || install -Dm644 $(NAME).sample.conf $(PREFIX)/etc/$(NAME).conf
 
 uninstall:
 	rm -f $(shell which $(NAME))

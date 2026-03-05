@@ -1,10 +1,12 @@
-pkgname="tungbou"
+pkgname=tungbou
+pkgver=v0.1.0
+pkgrel=1
 arch=(any)
-license="0BSD"
+license=("0BSD")
 depends=("perl" "perl-config-tiny")
-source=("tungbou.pl" "tungbou.sample.conf")
-sha256sums=("SKIP" "SKIP")
+source=("tungbou.pl" "tungbou.sample.conf" "Makefile")
+sha256sums=("SKIP" "SKIP" "SKIP")
 
 package() {
-  make install
+  make install PREFIX=$pkgdir
 }

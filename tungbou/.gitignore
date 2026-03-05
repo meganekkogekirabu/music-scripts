@@ -1,0 +1,4 @@
+# makepkg junk
+pkg/
+src/
+*.tar.zst
