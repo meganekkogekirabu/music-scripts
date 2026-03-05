@@ -3,12 +3,10 @@ Named for the Cantonese, 同步, for "to synchronise."
 This is mostly a personal tool. Don't expect it to
 work well.
 
-Need Config::Tiny (perl-config-tiny on Arch Linux),
-and you need to have mDNS configured on all the
-devices.
+Need Config::Any::TOML and you need to have mDNS
+configured on all the devices.
 
-Run `make install` to install in /usr/local/bin, or
-`make install PREFIX=/usr` to install in /usr/bin.
+Run `make install` to install in /usr/bin.
 
 Configuration is stored in /etc/tungbou.conf, but you
 can override this location with `--config=/path/`. See
