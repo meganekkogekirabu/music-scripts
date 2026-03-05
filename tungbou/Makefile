@@ -2,7 +2,7 @@ PREFIX ?=
 
 NAME = tungbou
 
-.PHONEY: install, uninstall
+.PHONEY: install, uninstall, clean
 
 install:
 	install -Dm755 $(NAME).pl $(PREFIX)/usr/bin/$(NAME)
@@ -11,3 +11,6 @@ install:
 uninstall:
 	rm -f $(shell which $(NAME))
 	rm -f /etc/$(NAME).conf
+
+clean:
+	rm -rf pkg src *.tar.zst
