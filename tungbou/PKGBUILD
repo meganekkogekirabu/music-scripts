@@ -4,8 +4,13 @@ pkgrel=1
 arch=(any)
 license=("0BSD")
 depends=("perl" "perl-config-tiny")
+makedepends=("cpanminus")
 source=("tungbou.pl" "tungbou.sample.conf" "Makefile")
 sha256sums=("SKIP" "SKIP" "SKIP")
+
+prepare() {
+  cpanm --installdeps .
+}
 
 package() {
   make install PREFIX=$pkgdir
