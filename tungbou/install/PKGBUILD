@@ -1,0 +1,10 @@
+pkgname="tungbou"
+arch=(any)
+license="0BSD"
+depends=("perl" "perl-config-tiny")
+source=("tungbou.pl" "tungbou.sample.conf")
+sha256sums=("SKIP" "SKIP")
+
+package() {
+  make install
+}
