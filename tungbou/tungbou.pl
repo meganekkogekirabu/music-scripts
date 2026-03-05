@@ -3,9 +3,10 @@
 use strict;
 use warnings;
 
-use Config::Any::TOML;
+use TOML::Tiny;
 use Getopt::Long;
 use Net::Ping;
+use Path::Tiny;
 
 my $config_path = "/etc/tungbou.conf";
 my $dry = 0;
@@ -20,10 +21,11 @@ if ( $dry )
   warn "running in dry mode, nothing will be changed\n"
 }
 
-my $config = Config::Any::TOML->load($config_path);
+my $config_text = path($config_path)->slurp_utf8;
+my $config = from_toml $config_text;
 
 my $parent = $config->{parent};
-my @children = $parent->{children}[0];
+my @children = @{$parent->{children}};
 my $parent_dir = glob $parent->{dir};
 
 foreach my $child ( @children )

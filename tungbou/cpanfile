@@ -1,1 +1,2 @@
-requires 'Config::Any::TOML';
+requires 'TOML::Tiny';
+requires 'Path::Tiny';

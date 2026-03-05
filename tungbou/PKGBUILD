@@ -1,10 +1,9 @@
 pkgname=tungbou
-pkgver=v0.1.0
+pkgver=v0.1.1
 pkgrel=1
 arch=(any)
 license=("0BSD")
-depends=("perl")
-makedepends=("cpanminus")
+depends=("perl" "perl-toml-tiny" "perl-path-tiny")
 source=("tungbou.pl" "tungbou.sample.conf" "Makefile")
 sha256sums=("SKIP" "SKIP" "SKIP")
 
