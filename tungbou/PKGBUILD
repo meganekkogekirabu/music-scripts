@@ -1,5 +1,5 @@
 pkgname=tungbou
-pkgver=v0.1.1
+pkgver=v0.1.2
 pkgrel=1
 arch=(any)
 license=("0BSD")
