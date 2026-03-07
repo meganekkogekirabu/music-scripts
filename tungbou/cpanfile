@@ -1,2 +1,0 @@
-requires 'TOML::Tiny';
-requires 'Path::Tiny';
