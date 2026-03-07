@@ -3,8 +3,7 @@ Named for the Cantonese, 同步, for "to synchronise."
 This is mostly a personal tool. Don't expect it to
 work well.
 
-Need Config::Any::TOML and you need to have mDNS
-configured on all the devices.
+You need to have mDNS configured on all the devices.
 
 Run `make install` to install in /usr/bin.
 
