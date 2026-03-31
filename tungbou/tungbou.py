@@ -75,7 +75,7 @@ class Child:
         child_dir = self.dir
         host = f"{self.hostname}.local"
 
-        command = f"rsync -avhz --progress {root_dir} {host}:{child_dir}"
+        command = f"rsync -avhz --progress --delete {root_dir} {host}:{child_dir}"
         if dry:
             print(f"$ {command}")
         else:
