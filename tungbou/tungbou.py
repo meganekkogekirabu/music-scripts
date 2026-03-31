@@ -3,23 +3,19 @@
 
 import argparse
 from dataclasses import dataclass
-from enum import Enum
 import logging
 import os
-import pathlib
 import signal
-import subprocess
 import sys
-import tempfile
 import tomllib
-from typing import Any, Callable, Optional, Self
+from typing import Any, Callable, Self
 
 signal.signal(signal.SIGINT, lambda *_: sys.exit(130))
 
 logger = logging.getLogger("tungbou")
 
 
-class Colors(Enum):
+class Colors:
     BLUE = "\033[34m"
     GREEN = "\033[32m"
     RESET = "\033[0m"
