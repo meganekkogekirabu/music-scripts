@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.14
 # -*- coding: utf8 -*-
 
 import argparse
@@ -39,7 +39,7 @@ class Formatter(logging.Formatter):
         return f"{prefix} {message}"
 
 
-def confirm(action: str, callback: Callable = lambda: None) -> bool:
+def _confirm(action: str, callback: Callable = lambda: None) -> bool:
     answer = input(f"{Colors.YELLOW}?{Colors.RESET} OK to {action}? [Y/n]: ")
 
     if answer.lower() in ["n", "no"]:
@@ -48,6 +48,12 @@ def confirm(action: str, callback: Callable = lambda: None) -> bool:
     else:
         callback()
         return True
+
+
+def _noconfirm(action: str, callback: Callable = lambda: None) -> bool:
+    logger.info(f"going to {action}")
+    callback()
+    return True
 
 
 def get_arguments() -> argparse.Namespace:
@@ -60,7 +66,13 @@ def get_arguments() -> argparse.Namespace:
         "--dry", "-d", action="store_true", help="If passed, no files will be synced"
     )
     parser.add_argument(
-        "--verbose", "-v", action="store_true", help="Enables verbose loggin"
+        "--verbose", "-v", action="store_true", help="Enables verbose logging"
+    )
+    parser.add_argument(
+        "--noconfirm",
+        "-y",
+        action="store_true",
+        help="Disables confirmation for running commands",
     )
 
     return parser.parse_args()
@@ -130,6 +142,9 @@ def main():
     args = get_arguments()
     config_file = args.config
     dry = args.dry
+
+    global confirm
+    confirm = _noconfirm if args.noconfirm else _confirm
 
     setup_logging(verbose=args.verbose)
 
